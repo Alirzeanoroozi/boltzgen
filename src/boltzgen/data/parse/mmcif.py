@@ -679,6 +679,8 @@ def parse_polymer(  # noqa: C901, PLR0915, PLR0912
         If the alignment fails.
 
     """
+    assert entity_poly_seq is not None
+    
     # Since the polymer object already contains the global idx, we don't need to perform the alignment
     sequence = [_entity[1] for _entity in entity_poly_seq]
 
@@ -1152,6 +1154,7 @@ def mmcif_from_block(  # noqa: C901, PLR0915, PLR0912
                     mols=mols,
                     moldir=moldir,
                     use_original_res_idx=use_original_res_idx,
+                    entity_poly_seq=entity_poly_seq[entity.name],
                 )
                 if parsed_polymer is not None:
                     ensemble_chains[ref_chain_map[subchain_id]] = parsed_polymer
