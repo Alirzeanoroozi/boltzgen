@@ -640,6 +640,12 @@ class Filter(Task):
             heapq.heappush(heap, (-gain, i))
 
         buckets = np.zeros(len(self.size_buckets) + 1)
+        first = selected[0]
+        first_len = len(self.df_m["sequence"][first])
+        for idx, bucket_size in enumerate(self.size_buckets):
+            if first_len >= bucket_size["min"] and first_len < bucket_size["max"]:
+                buckets[idx] += 1
+                break
         for _ in tqdm(
             range(k - 1), desc="Performing lazy greedy diversity optimization."
         ):
