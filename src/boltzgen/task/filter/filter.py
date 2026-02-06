@@ -785,6 +785,12 @@ class Filter(Task):
         hist_metrics = list(dict.fromkeys(hist_metrics))
         extra_pairs = list(dict.fromkeys(extra_pairs))
 
+        # Prepend any active ranking metrics not already in the lists
+        extra_ranking = [m for m in self.metrics if m in self.df.columns and m not in hist_metrics]
+        hist_metrics = extra_ranking + hist_metrics
+        summary_metrics = extra_ranking + summary_metrics
+        extra_pairs = [("num_design", m) for m in extra_ranking] + extra_pairs
+
         if self.use_affinity:
             summary_metrics.insert(2, "affinity_probability_binary1")
             hist_metrics.insert(2, "affinity_probability_binary1")
