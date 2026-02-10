@@ -3469,9 +3469,14 @@ eval_keys_confidence = [
     "design_iptm",
     "design_iiptm",
     "design_to_target_iptm",
+    "design_residue_iptm",
     "target_ptm",
     "design_ptm",
     "ligand_iptm",
+    "complex_plddt",
+    "complex_iplddt",
+    "complex_pde",
+    "complex_ipde",
 ]
 
 eval_keys_affinity = [

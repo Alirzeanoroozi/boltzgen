@@ -225,7 +225,7 @@ class Filter(Task):
         if not metrics_override is None:
             for k in metrics_override:
                 if metrics_override[k] is None:
-                    del self.metrics[k]
+                    self.metrics.pop(k, None)
                 else:
                     self.metrics[k] = metrics_override[k]
 
@@ -380,6 +380,8 @@ class Filter(Task):
                 "design_largest_hydrophobic_patch_refolded"
             ]
         df["neg_min_interaction_pae"] = -df["min_interaction_pae"]
+        df["neg_filter_rmsd"] = -df["filter_rmsd"]
+        df["neg_filter_rmsd_design"] = -df["filter_rmsd_design"]
         df["has_x"] = df["designed_sequence"].str.contains("X")
         self.df = df
 
