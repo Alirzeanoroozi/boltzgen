@@ -581,6 +581,7 @@ class ConfidenceHeads(nn.Module):
                 protein_iptm,
                 pair_chains_iptm,
                 design_to_target_iptm,
+                design_residue_iptm,
                 design_iptm,
                 design_iiptm,
                 target_ptm,
@@ -592,6 +593,7 @@ class ConfidenceHeads(nn.Module):
             out_dict["protein_iptm"] = protein_iptm
             out_dict["pair_chains_iptm"] = pair_chains_iptm
             out_dict["design_to_target_iptm"] = design_to_target_iptm
+            out_dict["design_residue_iptm"] = design_residue_iptm
             out_dict["design_iptm"] = design_iptm
             out_dict["design_iiptm"] = design_iiptm
             out_dict["target_ptm"] = target_ptm
@@ -604,6 +606,7 @@ class ConfidenceHeads(nn.Module):
             out_dict["protein_iptm"] = torch.zeros_like(complex_plddt)
             out_dict["pair_chains_iptm"] = torch.zeros_like(complex_plddt)
             out_dict["design_to_target_iptm"] = torch.zeros_like(complex_plddt)
+            out_dict["design_residue_iptm"] = torch.zeros_like(complex_plddt)
             out_dict["design_iptm"] = torch.zeros_like(complex_plddt)
             out_dict["design_iiptm"] = torch.zeros_like(complex_plddt)
             out_dict["target_ptm"] = torch.zeros_like(complex_plddt)

@@ -101,6 +101,7 @@ class BoltzMasker(Module):
             new["res_type_clone"] = clone["res_type_clone"]
             new["feature_residue_index"] = clone["feature_residue_index"]
             new["feature_asym_id"] = clone["feature_asym_id"]
+            new["symmetric_group"] = clone["symmetric_group"]
             new["token_to_res"] = clone["token_to_res"]
             new["token_bonds"] = torch.zeros_like(
                 clone["token_bonds"]
