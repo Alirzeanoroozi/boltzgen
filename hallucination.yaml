@@ -1,0 +1,4 @@
+entities:
+  - protein: 
+      id: B
+      sequence: 10..50
