@@ -6,7 +6,7 @@
 
 import omegaconf
 import hydra
-from boltzgen.task.task import Task
+from src.task.task import Task
 
 config = omegaconf.OmegaConf.load("src/boltzgen/resources/config/design.yaml")
 task = hydra.utils.instantiate(config)

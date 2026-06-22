@@ -25,7 +25,6 @@ The possible tasks (and code files you want to inspect to understand what they a
 """
 
 from boltzgen.utils.quiet import quiet_startup
-
 quiet_startup()
 
 import collections
@@ -55,11 +54,9 @@ from importlib.metadata import PackageNotFoundError, version as pkg_version
 
 ### Paths and constants ####
 # Get the path to the project root (where main.py and configs/ are located)
-# Since we're now in src/boltzgen/, we need to go up 3 levels
+# Since we're now in boltzgen/, we need to go up 1 levels
 path_to_script = Path(__file__)
-project_root = (
-    path_to_script.parent.parent
-)  # Go up from src/boltzgen/cli to project root
+project_root = path_to_script.parent  # Go up from boltzgen/boltzgen.py to project root
 config_dir = project_root / "resources/config"
 main_script = project_root / "resources/main.py"
 
@@ -1463,5 +1460,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    print("Starting BoltzGen... MAMAMM")
     main()
