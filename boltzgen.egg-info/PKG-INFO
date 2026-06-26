@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: boltzgen
+Version: 0.1.5
+Summary: Protein design
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy==2.0.2
+Requires-Dist: numba==0.61.0
+Requires-Dist: matplotlib
+Requires-Dist: hydride
+Requires-Dist: biotite
+Requires-Dist: pydssp
+Requires-Dist: logomaker
+Requires-Dist: gemmi==0.6.5
+Requires-Dist: torch>=2.4.1
+Requires-Dist: scikit-learn
+Requires-Dist: hydra-core
+Requires-Dist: edit_distance
+Requires-Dist: pytorch-lightning
+Requires-Dist: rdkit
+Requires-Dist: pandas
+Requires-Dist: pdbeccdutils
+Requires-Dist: einx
+Requires-Dist: einops
+Requires-Dist: mashumaro
+Requires-Dist: nvidia-ml-py>=12.535.133
+Requires-Dist: cuequivariance_ops_cu12>=0.5.0
+Requires-Dist: cuequivariance_ops_torch_cu12>=0.5.0
+Requires-Dist: cuequivariance_torch>=0.5.0
+Requires-Dist: huggingface_hub
+Requires-Dist: biopython
+Provides-Extra: lint
+Requires-Dist: ruff; extra == "lint"
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Provides-Extra: doc
+Provides-Extra: build
+Provides-Extra: dev
+Requires-Dist: redis; extra == "dev"
+Requires-Dist: wandb; extra == "dev"
+Requires-Dist: requests; extra == "dev"
+Requires-Dist: types-requests==2.32.4.*; extra == "dev"
+Requires-Dist: boltzgen[lint]; extra == "dev"
+Requires-Dist: boltzgen[test]; extra == "dev"
+Requires-Dist: boltzgen[doc]; extra == "dev"
+Requires-Dist: boltzgen[build]; extra == "dev"

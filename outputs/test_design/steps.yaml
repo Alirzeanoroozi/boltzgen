@@ -1,0 +1,3 @@
+steps:
+- name: design
+  config_file: config/design.yaml

@@ -89,7 +89,8 @@ class FoldingWriter(BasePredictionWriter):
             plddt_atom[prediction_out["atom_pad_mask"].bool()].float().cpu().numpy()
         )
         cif_text = to_mmcif(structure)
-        open(self.refold_cif_dir / f"{batch['id'][0]}.cif", "w").write(cif_text)
+        with open(self.refold_cif_dir / f"{batch['id'][0]}.cif", "w") as f:
+            f.write(cif_text)
 
         # Failed prediction handling
         if isinstance(prediction["exception"], bool):
@@ -374,13 +375,21 @@ class DesignWriter(BasePredictionWriter):
                 unique_mask = np.ones_like(token_to_res, dtype=bool)
                 unique_mask[1:] = token_to_res[1:] != token_to_res[:-1]
                 design_color_features = design_color_features[unique_mask]
-                open(gen_path, "w").write(
-                    to_mmcif(
-                        structure,
-                        design_coloring=True,
-                        color_features=design_color_features,
+                with open(gen_path, "w") as f:
+                    f.write(
+                        to_mmcif(
+                            structure,
+                            design_coloring=True,
+                            color_features=design_color_features,
+                        )
                     )
-                )
+                # open(gen_path, "w").write(
+                #     to_mmcif(
+                #         structure,
+                #         design_coloring=True,
+                #         color_features=design_color_features,
+                #     )
+                # )
 
                 # Write metadata
                 metadata_path = f"{self.outdir}/{file_name}.npz"

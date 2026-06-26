@@ -30,19 +30,18 @@ dependencies = [
     "einops",
     "mashumaro",
     "nvidia-ml-py>=12.535.133",
-#     "cuequivariance_ops_cu12>=0.5.0",
-#     "cuequivariance_ops_torch_cu12>=0.5.0",
-#     "cuequivariance_torch>=0.5.0",
+    "cuequivariance_ops_cu12>=0.5.0",
+    "cuequivariance_ops_torch_cu12>=0.5.0",
+    "cuequivariance_torch>=0.5.0",
     "huggingface_hub",
     "biopython", 
 ]
 
 [tool.setuptools]
-package-dir = {"" = "boltzgen"}
 include-package-data = true
 
 [tool.setuptools.packages.find]
-where = ["boltzgen"]
+where = ["."]
 
 [tool.setuptools.package-data]
 boltzgen = ["resources/config/**/*"]

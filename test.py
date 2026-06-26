@@ -6,9 +6,9 @@
 
 import omegaconf
 import hydra
-from src.task.task import Task
+from boltzgen.task.task import Task
 
-config = omegaconf.OmegaConf.load("src/boltzgen/resources/config/design.yaml")
+config = omegaconf.OmegaConf.load("boltzgen/resources/config/design.yaml")
 task = hydra.utils.instantiate(config)
 if not isinstance(task, Task):
     raise TypeError("Config must be an instance of Task.")

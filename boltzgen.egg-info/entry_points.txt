@@ -1,0 +1,2 @@
+[console_scripts]
+boltzgen = boltzgen.boltzgen:main

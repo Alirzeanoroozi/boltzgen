@@ -1,0 +1,60 @@
+Thu Jun 25 18:34:08 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          Off |   00000000:4D:00.0 Off |                    0 |
+| N/A   29C    P0             57W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Initializing FromGeneratedDataModule datasets for outputs/test_design_rbx1_mine/inverse_folding/
+[Info] Number of files to process (including already processed ones): 10
+Found 1 targets and 10 remaining designs that still need to be processed in this step.
+Processing samples:   0%|          | 0/10 [00:00<?, ?it/s]Processing samples:  10%|█         | 1/10 [00:32<04:51, 32.35s/it]Processing samples:  30%|███       | 3/10 [00:32<00:58,  8.43s/it]Processing samples:  50%|█████     | 5/10 [00:32<00:20,  4.17s/it]Processing samples:  70%|███████   | 7/10 [00:33<00:07,  2.62s/it]Processing samples:  90%|█████████ | 9/10 [00:33<00:01,  1.67s/it]Processing samples: 100%|██████████| 10/10 [00:34<00:00,  1.34s/it]Processing samples: 100%|██████████| 10/10 [00:36<00:00,  3.64s/it]
+Computed metrics successfully for 10 out of 10.
+Loading saved metrics from disk. 1% of total:   0%|          | 0/10 [00:00<?, ?it/s]Loading saved metrics from disk. 1% of total:  60%|██████    | 6/10 [00:00<00:00, 55.36it/s]Loading saved metrics from disk. 1% of total: 100%|██████████| 10/10 [00:00<00:00, 59.43it/s]
+Number of targets: 1. Number of designs: 10.
+Done Analysis
+Total number of designs:    10
+Duplicates found: 0. Removing duplicates. 10 designs remain.
+
+Num designs that pass the has_x filter with threshold 0 where lower is better: 10
+Remaining designs: 10
+Num designs that pass the filter_rmsd filter with threshold 2 where lower is better: 0
+Remaining designs: 0
+Num designs that pass the filter_rmsd_design filter with threshold 2 where lower is better: 2
+Remaining designs: 0
+Num designs that pass the CYS_fraction filter with threshold 0 where lower is better: 10
+Remaining designs: 0
+Num designs that pass the ALA_fraction filter with threshold 0.3 where lower is better: 10
+Remaining designs: 0
+Num designs that pass the GLY_fraction filter with threshold 0.2 where lower is better: 10
+Remaining designs: 0
+Num designs that pass the GLU_fraction filter with threshold 0.2 where lower is better: 8
+Remaining designs: 0
+Num designs that pass the LEU_fraction filter with threshold 0.3 where lower is better: 10
+Remaining designs: 0
+Num designs that pass the VAL_fraction filter with threshold 0.2 where lower is better: 10
+Remaining designs: 0
+Only 0 designs pass filters. We highly recommend relaxing the thresholds.
+
+
+copy top design files: 0it [00:00, ?it/s]copy top design files: 10it [00:00, 97.77it/s]copy top design files: 10it [00:00, 97.37it/s]
+copy diversity files:   0%|          | 0/10 [00:00<?, ?it/s]copy diversity files: 100%|██████████| 10/10 [00:00<00:00, 99.01it/s]copy diversity files: 100%|██████████| 10/10 [00:00<00:00, 98.54it/s]
+Files + CSV saved to outputs/test_design_rbx1_mine/final_ranked_designs
+
+Writing design files is done. Now making plots for a final summary .pdf file with statistics.
+Making liability plots for top 0 sequences.: 0it [00:00, ?it/s]Making liability plots for top 0 sequences.: 0it [00:00, ?it/s]
+A description of metrics and summarizing plots was written to: outputs/test_design_rbx1_mine/final_ranked_designs/results_overview.pdf
+Done Filtering
