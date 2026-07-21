@@ -1,0 +1,206 @@
+data_model
+_entry.id model
+
+_cell.entry_id model
+_cell.length_a 1
+_cell.length_b 1
+_cell.length_c 1
+_cell.angle_alpha 90
+_cell.angle_beta 90
+_cell.angle_gamma 90
+
+_symmetry.entry_id model
+_symmetry.space_group_name_H-M ''
+
+loop_
+_entity.id
+_entity.type
+1 polymer
+
+loop_
+_entity_poly.entity_id
+_entity_poly.type
+_entity_poly.pdbx_strand_id
+_entity_poly.pdbx_seq_one_letter_code
+1 polypeptide(L) ? VNILINDILS
+
+
+
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+A 1
+
+
+
+
+loop_
+_atom_type.symbol
+C
+N
+O
+
+loop_
+_entity_poly_seq.entity_id
+_entity_poly_seq.num
+_entity_poly_seq.mon_id
+1 1 VAL
+1 2 ASN
+1 3 ILE
+1 4 LEU
+1 5 ILE
+1 6 ASN
+1 7 ASP
+1 8 ILE
+1 9 LEU
+1 10 SER
+
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_alt_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_entity_id
+_atom_site.label_seq_id
+_atom_site.pdbx_PDB_ins_code
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.occupancy
+_atom_site.B_iso_or_equiv
+_atom_site.pdbx_formal_charge
+_atom_site.auth_seq_id
+_atom_site.auth_asym_id
+_atom_site.pdbx_PDB_model_num
+ATOM 1 N N . VAL A 1 1 ? 4.89175892 1.99568427 14.1191187 1 1 ? 1 A 1
+ATOM 2 C CA . VAL A 1 1 ? 4.99680471 2.18990731 12.6759214 1 1 ? 1 A 1
+ATOM 3 C C . VAL A 1 1 ? 3.82240462 1.58372772 11.8978615 1 1 ? 1 A 1
+ATOM 4 O O . VAL A 1 1 ? 3.42353177 0.449907839 12.1619883 1 1 ? 1 A 1
+ATOM 5 C CB . VAL A 1 1 ? 6.34927082 1.60330307 12.1652136 1 1 ? 1 A 1
+ATOM 6 C CG1 . VAL A 1 1 ? 6.33572006 0.105418362 12.1264496 1 1 ? 1 A 1
+ATOM 7 C CG2 . VAL A 1 1 ? 6.68096924 2.04247403 10.8281136 1 1 ? 1 A 1
+ATOM 8 N N . ASN A 1 2 ? 3.36854887 2.34446454 10.9594698 1 1 ? 2 A 1
+ATOM 9 C CA . ASN A 1 2 ? 2.23462033 1.81107044 10.1652918 1 1 ? 2 A 1
+ATOM 10 C C . ASN A 1 2 ? 2.64623976 1.72323358 8.69930363 1 1 ? 2 A 1
+ATOM 11 O O . ASN A 1 2 ? 2.90280557 2.73859978 8.07528114 1 1 ? 2 A 1
+ATOM 12 C CB . ASN A 1 2 ? 1.01923668 2.69778728 10.2957859 1 1 ? 2 A 1
+ATOM 13 C CG . ASN A 1 2 ? 0.366534233 2.62559509 11.6679249 1 1 ? 2 A 1
+ATOM 14 O OD1 . ASN A 1 2 ? -0.783239543 2.21474075 11.8029089 1 1 ? 2 A 1
+ATOM 15 N ND2 . ASN A 1 2 ? 1.15466082 3.02610397 12.7020168 1 1 ? 2 A 1
+ATOM 16 N N . ILE A 1 3 ? 2.7178359 0.508610427 8.1854763 1 1 ? 3 A 1
+ATOM 17 C CA . ILE A 1 3 ? 3.0750854 0.271402895 6.78632545 1 1 ? 3 A 1
+ATOM 18 C C . ILE A 1 3 ? 1.83648753 0.0696093217 5.94009352 1 1 ? 3 A 1
+ATOM 19 O O . ILE A 1 3 ? 0.984640241 -0.752326012 6.2485671 1 1 ? 3 A 1
+ATOM 20 C CB . ILE A 1 3 ? 3.96173549 -0.973406613 6.63940239 1 1 ? 3 A 1
+ATOM 21 C CG1 . ILE A 1 3 ? 5.3649888 -0.6907897 7.26324844 1 1 ? 3 A 1
+ATOM 22 C CG2 . ILE A 1 3 ? 4.08413696 -1.40083718 5.20028973 1 1 ? 3 A 1
+ATOM 23 C CD1 . ILE A 1 3 ? 6.26085949 -1.93024278 7.33840799 1 1 ? 3 A 1
+ATOM 24 N N . LEU A 1 4 ? 1.78703904 0.81740737 4.87959099 1 1 ? 4 A 1
+ATOM 25 C CA . LEU A 1 4 ? 0.619684935 0.720315814 3.97394204 1 1 ? 4 A 1
+ATOM 26 C C . LEU A 1 4 ? 0.939890385 -0.105595626 2.72867084 1 1 ? 4 A 1
+ATOM 27 O O . LEU A 1 4 ? 1.8072232 0.221712366 1.96394455 1 1 ? 4 A 1
+ATOM 28 C CB . LEU A 1 4 ? 0.163659111 2.09126687 3.56742334 1 1 ? 4 A 1
+ATOM 29 C CG . LEU A 1 4 ? -0.632986486 2.19543052 2.22267032 1 1 ? 4 A 1
+ATOM 30 C CD1 . LEU A 1 4 ? -1.77046001 1.23966718 2.18035436 1 1 ? 4 A 1
+ATOM 31 C CD2 . LEU A 1 4 ? -1.05767238 3.59762192 1.97581995 1 1 ? 4 A 1
+ATOM 32 N N . ILE A 1 5 ? 0.177415758 -1.17967439 2.48188663 1 1 ? 5 A 1
+ATOM 33 C CA . ILE A 1 5 ? 0.428029954 -2.06328106 1.34654903 1 1 ? 5 A 1
+ATOM 34 C C . ILE A 1 5 ? -0.640109777 -1.88513517 0.298692465 1 1 ? 5 A 1
+ATOM 35 O O . ILE A 1 5 ? -1.80760157 -1.96042252 0.591632128 1 1 ? 5 A 1
+ATOM 36 C CB . ILE A 1 5 ? 0.482642919 -3.53269196 1.79330087 1 1 ? 5 A 1
+ATOM 37 C CG1 . ILE A 1 5 ? 1.57311833 -3.75570989 2.81649303 1 1 ? 5 A 1
+ATOM 38 C CG2 . ILE A 1 5 ? 0.669285834 -4.45276403 0.682004035 1 1 ? 5 A 1
+ATOM 39 C CD1 . ILE A 1 5 ? 1.50803947 -5.12422371 3.49463534 1 1 ? 5 A 1
+ATOM 40 N N . ASN A 1 6 ? -0.229981735 -1.70925784 -0.954735756 1 1 ? 6 A 1
+ATOM 41 C CA . ASN A 1 6 ? -1.12535882 -1.8087045 -2.0970335 1 1 ? 6 A 1
+ATOM 42 C C . ASN A 1 6 ? -0.824116945 -3.06639814 -2.88183832 1 1 ? 6 A 1
+ATOM 43 O O . ASN A 1 6 ? 0.27147761 -3.60807347 -2.81070924 1 1 ? 6 A 1
+ATOM 44 C CB . ASN A 1 6 ? -0.979566216 -0.585504115 -2.98682594 1 1 ? 6 A 1
+ATOM 45 C CG . ASN A 1 6 ? -1.35336721 0.718433678 -2.26943326 1 1 ? 6 A 1
+ATOM 46 O OD1 . ASN A 1 6 ? -2.21057844 0.780119538 -1.40889645 1 1 ? 6 A 1
+ATOM 47 N ND2 . ASN A 1 6 ? -0.649211645 1.81277668 -2.62390113 1 1 ? 6 A 1
+ATOM 48 N N . ASP A 1 7 ? -1.84094954 -3.54009151 -3.64737821 1 1 ? 7 A 1
+ATOM 49 C CA . ASP A 1 7 ? -1.5519774 -4.63480759 -4.55483437 1 1 ? 7 A 1
+ATOM 50 C C . ASP A 1 7 ? -0.455196351 -4.23377752 -5.52403164 1 1 ? 7 A 1
+ATOM 51 O O . ASP A 1 7 ? -0.223173007 -3.05061173 -5.74153757 1 1 ? 7 A 1
+ATOM 52 C CB . ASP A 1 7 ? -2.85782075 -5.03580236 -5.3186512 1 1 ? 7 A 1
+ATOM 53 C CG . ASP A 1 7 ? -2.67631531 -6.38632679 -6.02489185 1 1 ? 7 A 1
+ATOM 54 O OD1 . ASP A 1 7 ? -3.40570879 -6.59343576 -7.03195429 1 1 ? 7 A 1
+ATOM 55 O OD2 . ASP A 1 7 ? -1.84788811 -7.24078274 -5.59709501 1 1 ? 7 A 1
+ATOM 56 N N . ILE A 1 8 ? 0.201078892 -5.28172064 -6.1026001 1 1 ? 8 A 1
+ATOM 57 C CA . ILE A 1 8 ? 1.12075686 -5.11004496 -7.21700859 1 1 ? 8 A 1
+ATOM 58 C C . ILE A 1 8 ? 0.919237435 -6.23215532 -8.24491215 1 1 ? 8 A 1
+ATOM 59 O O . ILE A 1 8 ? 1.86408031 -6.74769592 -8.83870029 1 1 ? 8 A 1
+ATOM 60 C CB . ILE A 1 8 ? 2.58940864 -5.06663752 -6.79312754 1 1 ? 8 A 1
+ATOM 61 C CG1 . ILE A 1 8 ? 3.00402117 -6.40387344 -6.16087914 1 1 ? 8 A 1
+ATOM 62 C CG2 . ILE A 1 8 ? 2.94943714 -3.98114514 -5.79747009 1 1 ? 8 A 1
+ATOM 63 C CD1 . ILE A 1 8 ? 4.49780369 -6.47082138 -5.92924452 1 1 ? 8 A 1
+ATOM 64 N N . LEU A 1 9 ? -0.329425901 -6.62098455 -8.42526531 1 1 ? 9 A 1
+ATOM 65 C CA . LEU A 1 9 ? -0.701580763 -7.5976429 -9.42956448 1 1 ? 9 A 1
+ATOM 66 C C . LEU A 1 9 ? -1.50762868 -6.96063995 -10.5578585 1 1 ? 9 A 1
+ATOM 67 O O . LEU A 1 9 ? -2.37654519 -7.58940315 -11.1492205 1 1 ? 9 A 1
+ATOM 68 C CB . LEU A 1 9 ? -1.46332014 -8.72909355 -8.73647594 1 1 ? 9 A 1
+ATOM 69 C CG . LEU A 1 9 ? -0.724206924 -9.41826916 -7.55200243 1 1 ? 9 A 1
+ATOM 70 C CD1 . LEU A 1 9 ? -1.57744551 -10.441144 -6.82906437 1 1 ? 9 A 1
+ATOM 71 C CD2 . LEU A 1 9 ? 0.545615375 -9.93233871 -8.12360096 1 1 ? 9 A 1
+ATOM 72 N N . SER A 1 10 ? -1.28187764 -5.77027845 -10.8009319 1 1 ? 10 A 1
+ATOM 73 C CA . SER A 1 10 ? -2.0525763 -5.04729605 -11.8081532 1 1 ? 10 A 1
+ATOM 74 C C . SER A 1 10 ? -1.57470739 -5.37146711 -13.2180395 1 1 ? 10 A 1
+ATOM 75 O O . SER A 1 10 ? -0.548983216 -6.09191132 -13.3420277 1 1 ? 10 A 1
+ATOM 76 C CB . SER A 1 10 ? -1.94169533 -3.55682302 -11.5309038 1 1 ? 10 A 1
+ATOM 77 O OG . SER A 1 10 ? -2.03629088 -3.26680636 -10.172225 1 1 ? 10 A 1
+
+loop_
+_pdbx_poly_seq_scheme.asym_id
+_pdbx_poly_seq_scheme.entity_id
+_pdbx_poly_seq_scheme.seq_id
+_pdbx_poly_seq_scheme.mon_id
+_pdbx_poly_seq_scheme.pdb_seq_num
+_pdbx_poly_seq_scheme.auth_seq_num
+_pdbx_poly_seq_scheme.pdb_mon_id
+_pdbx_poly_seq_scheme.auth_mon_id
+_pdbx_poly_seq_scheme.pdb_strand_id
+_pdbx_poly_seq_scheme.pdb_ins_code
+_pdbx_poly_seq_scheme.hetero
+A 1 1 VAL 1 1 VAL VAL A . n
+A 1 2 ASN 2 2 ASN ASN A . n
+A 1 3 ILE 3 3 ILE ILE A . n
+A 1 4 LEU 4 4 LEU LEU A . n
+A 1 5 ILE 5 5 ILE ILE A . n
+A 1 6 ASN 6 6 ASN ASN A . n
+A 1 7 ASP 7 7 ASP ASP A . n
+A 1 8 ILE 8 8 ILE ILE A . n
+A 1 9 LEU 9 9 LEU LEU A . n
+A 1 10 SER 10 10 SER SER A . n
+
+loop_
+_ma_qa_metric.id
+_ma_qa_metric.name
+_ma_qa_metric.description
+_ma_qa_metric.type
+_ma_qa_metric.mode
+_ma_qa_metric.type_other_details
+_ma_qa_metric.software_group_id
+1 pLDDT 'Predicted lddt' pLDDT local . .
+
+loop_
+_ma_qa_metric_local.ordinal_id
+_ma_qa_metric_local.model_id
+_ma_qa_metric_local.label_asym_id
+_ma_qa_metric_local.label_seq_id
+_ma_qa_metric_local.label_comp_id
+_ma_qa_metric_local.metric_id
+_ma_qa_metric_local.metric_value
+1 1 A 1 VAL 1 60.000
+2 1 A 2 ASN 1 60.000
+3 1 A 3 ILE 1 60.000
+4 1 A 4 LEU 1 60.000
+5 1 A 5 ILE 1 60.000
+6 1 A 6 ASN 1 60.000
+7 1 A 7 ASP 1 60.000
+8 1 A 8 ILE 1 60.000
+9 1 A 9 LEU 1 60.000
+10 1 A 10 SER 1 60.000

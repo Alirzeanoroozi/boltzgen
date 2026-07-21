@@ -111,6 +111,7 @@ class RefoldingValidator(design.DesignValidator):
                 strict=False,
                 map_location=model.device,
                 predict_args=self.folding_args,
+                weights_only=False,
                 **self.folding_model_args,
             )
             model_module.eval()
@@ -133,6 +134,7 @@ class RefoldingValidator(design.DesignValidator):
                 strict=False,
                 predict_args=self.affinity_args,
                 map_location=model.device,
+                weights_only=False,
                 **self.affinity_model_args,
             )
             model_module.eval()

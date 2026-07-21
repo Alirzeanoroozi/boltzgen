@@ -184,8 +184,8 @@ class DesignWriter(BasePredictionWriter):
 
         """
         super().__init__(write_interval="batch")
-        self.mol_dir = Path(output_dir) / const.molecules_dirname
-        self.mol_dir.mkdir(parents=True, exist_ok=True)
+        # self.mol_dir = Path(output_dir) / const.molecules_dirname
+        # self.mol_dir.mkdir(parents=True, exist_ok=True)
         self.save_traj = save_traj
         self.save_x0_traj = save_x0_traj
         self.res_atoms_only = res_atoms_only
@@ -217,6 +217,10 @@ class DesignWriter(BasePredictionWriter):
         dataloader_idx: int = 0,  # noqa: ARG002
         sample_id: str = None,
     ) -> None:
+        with open(f"debug/prediction_{batch_idx}.pkl", "wb") as f:
+            pickle.dump(prediction, f)
+        with open(f"debug/batch_{batch_idx}.pkl", "wb") as f:
+            pickle.dump(batch, f)
         if prediction["exception"]:
             self.failed += 1
             return

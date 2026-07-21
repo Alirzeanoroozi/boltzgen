@@ -12,8 +12,8 @@ from boltzgen.model.models.boltz import Boltz
 MOL_DIR = "/home/anoroozi25/.cache/huggingface/hub/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip"
 CHECKPOINT = "/home/anoroozi25/.cache/huggingface/hub/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_diverse.ckpt"
 
-OUTPUT_DIR = "outputs/test_design_rbx1_mine/intermediate_designs"
-YAML_PATH = "inputs/config_rbx1.yaml"
+OUTPUT_DIR = "new_outputs/"
+YAML_PATH = "inputs/hallucination.yaml"
 
 if __name__ == "__main__":
     data_config = DataConfig(
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     data = FromYamlDataModule(
         data_config,
         batch_size=1,
-        num_workers=1,
+        num_workers=10,
         pin_memory=True,
         extra_features=None # TODO: Add extra features from config
     )
@@ -52,13 +52,19 @@ if __name__ == "__main__":
         atom14=True,
         atom37=False,
         backbone_only=False,
-        write_native=False
+        write_native=True,
+        save_traj=True,
+        save_x0_traj=True,
     )
     
     predict_args = {
         "recycling_steps": 3,
         "sampling_steps": 500,
         "diffusion_samples": 10,
+        "return_z_feats": True,
+        "keys_dict_out": ["s_trunk", "pdistogram", "pbfactor"],
+        "confidence_prediction": True,
+        "predict_bfactor": True,
     }
 
     # Load model
@@ -87,5 +93,4 @@ if __name__ == "__main__":
     lightning_trainer.predict(
         model_module,
         datamodule=data,
-        return_predictions=True
     )

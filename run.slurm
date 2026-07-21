@@ -20,8 +20,8 @@ nvidia-smi
 # boltzgen run inputs/config_KPC3.yaml --output outputs/hallucination_run --protocol peptide-anything --num_designs 100 --budget 10
 
 # boltzgen run inputs/config_KPC3.yaml --output outputs/test_design --protocol peptide-anything --num_designs 20 --budget 2 --steps design
-# python design.py
+python design.py
 # python inverse_folding.py
 # python folding.py
-python analysis.py
-python filtering.py
+# python analysis.py
+# python filtering.py

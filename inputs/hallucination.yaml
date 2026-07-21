@@ -1,4 +1,4 @@
 entities:
   - protein: 
       id: A
-      sequence: 10..30
+      sequence: 10
