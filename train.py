@@ -283,7 +283,7 @@ def build_model() -> Boltz:
             "activation_checkpointing": False,
         },
         confidence_prediction=CONFIDENCE_PREDICTION,
-        structure_prediction_training=True,
+        structure_prediction_training=False,
         training_args=OmegaConf.create({
             "recycling_steps": 3,
             "sampling_steps": 20,
@@ -364,9 +364,9 @@ if __name__ == "__main__":
 
     trainer = pl.Trainer(
         default_root_dir=str(dirpath),
-        strategy=DDPStrategy(
-            cluster_environment=LightningEnvironment(),
-        ),
+        # strategy=DDPStrategy(
+        #     cluster_environment=LightningEnvironment(),
+        # ),
         callbacks=callbacks,
         logger=loggers,
         enable_checkpointing=True,

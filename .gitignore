@@ -1,3 +1,5 @@
-pycache/
+pycache/*
+*.nbc
+*nbi
 *.pyc
 training_data/

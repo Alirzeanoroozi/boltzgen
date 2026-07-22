@@ -9,8 +9,8 @@ from boltzgen.data.feature.featurizer import Featurizer
 from boltzgen.task.predict.writer import DesignWriter
 from boltzgen.model.models.boltz import Boltz
 
-MOL_DIR = "/home/anoroozi25/.cache/huggingface/hub/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip"
-CHECKPOINT = "/home/anoroozi25/.cache/huggingface/hub/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_diverse.ckpt"
+MOL_DIR = "/home/anoroozi/.cache/huggingface/hub/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip"
+CHECKPOINT = "/home/anoroozi/.cache/huggingface/hub/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_diverse.ckpt"
 
 OUTPUT_DIR = "new_outputs/"
 YAML_PATH = "inputs/hallucination.yaml"
@@ -78,6 +78,11 @@ if __name__ == "__main__":
         weights_only=False,
     )
     model_module.eval()
+    # Print the number of trainable and total model parameters
+    total_params = sum(p.numel() for p in model_module.parameters())
+    trainable_params = sum(p.numel() for p in model_module.parameters() if p.requires_grad)
+    print(f"Total parameters: {total_params}")
+    print(f"Trainable parameters: {trainable_params}")
 
     lightning_trainer = Trainer(
         default_root_dir=OUTPUT_DIR,

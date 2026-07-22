@@ -9,8 +9,8 @@ from boltzgen.data.feature.featurizer import Featurizer
 from boltzgen.task.predict.writer import DesignWriter
 from boltzgen.model.models.boltz import Boltz
 
-MOL_DIR = "/home/anoroozi25/.cache/huggingface/hub/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip"
-CHECKPOINT = "/home/anoroozi25/.cache/huggingface/hub/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_ifold.ckpt"
+MOL_DIR = "/home/anoroozi/.cache/huggingface/hub/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip"
+CHECKPOINT = "/home/anoroozi/.cache/huggingface/hub/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_ifold.ckpt"
 
 OUTPUT_DIR = "outputs/test_design_rbx1_mine/inverse_folding/"
 DESIGN_DIR = "outputs/test_design_rbx1_mine/intermediate_designs"
@@ -131,10 +131,4 @@ if __name__ == "__main__":
     )
 
     # Run training
-    lightning_trainer.predict(
-        model_module,
-        datamodule=data,
-        return_predictions=True
-    )
-
-    print("Done Inverse Folding")
+    lightning_trainer.predict(model_module, datamodule=data)
