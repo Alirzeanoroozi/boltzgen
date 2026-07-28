@@ -1,6 +1,5 @@
 import os
 import pytorch_lightning as pl
-from omegaconf import OmegaConf
 from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.plugins.environments import LightningEnvironment
@@ -24,22 +23,16 @@ from boltzgen.task.analyze.analyze import Analyze
 from boltzgen.task.train.data import DatasetConfig, DataConfig, TrainingDataModule
 from boltzgen.model.validation.refolding import RefoldingValidator
 
-# ---------------------------------------------------------------------------
-# Paths / run settings (edit these)
-# ---------------------------------------------------------------------------
 NAME = "boltzgen_small"
-OUTPUT = "workdir_new_new"
+OUTPUT = "workdir"
 FOLDING_CHECKPOINT = "./training_data/boltz2_fold.ckpt"
 MOL_DIR = "./training_data/mols"
 TARGET_DIR = "./training_data/targets"
 MSA_DIR = "./training_data/msa"
 
-SPLIT = "./boltzgen/resources/splits/validation_ids_boltz2_all.txt"
-MONOMER_SPLIT = "./boltzgen/resources/splits/val_monomers_boltzgen_min50_max220.txt"
-LIGAND_SPLIT = "./boltzgen/resources/splits/val_ccd_pdb_pairs_boltzgen.txt"
-
-# Match SLURM --gres (e.g. 7 free A100s on kutem_gpu while 1 is occupied)
-DEVICES = 7
+SPLIT = "./boltzgen/resources/splits_small/validation_ids_boltz2_all.txt"
+MONOMER_SPLIT = "./boltzgen/resources/splits_small/val_monomers_boltzgen_min50_max220.txt"
+LIGAND_SPLIT = "./boltzgen/resources/splits_small/val_ccd_pdb_pairs_boltzgen.txt"
 
 CONFIDENCE_PREDICTION = False
 BACKBONE_ONLY = False
@@ -182,6 +175,24 @@ def build_refolding_validator():
         folding_model_args={"validators": None},
     )
 
+
+class DotDict(dict):
+    """DotDict is a dictionary with attribute-style access."""
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError as exc:
+            raise AttributeError(key) from exc
+    def __setattr__(self, key, value):
+        self[key] = value
+    def __delattr__(self, key):
+        try:
+            del self[key]
+        except KeyError as exc:
+            raise AttributeError(key) from exc
+
+
+
 def build_model() -> Boltz:
     design_validator = DesignValidator(
         val_names=["RCSB"],
@@ -197,27 +208,36 @@ def build_model() -> Boltz:
         token_s=384,
         token_z=128,
         num_bins=64,
-        atom_feature_dim=388,
-        atoms_per_window_queries=32,
-        atoms_per_window_keys=128,
-        use_miniformer=True,
-        ema=True,
-        ema_decay=0.999,
-        exclude_ions_from_lddt=True,
-        num_val_datasets=1,
-        ignore_ckpt_shape_mismatch=False,
-        aggregate_distogram=True,
-        bond_type_feature=True,
-        predict_bfactor=True,
-        predict_res_type=False,
-        checkpoint_diffusion_conditioning=False,
-        use_kernels=True,
-        validators=[design_validator],
-        masker_args={
-            "mask": True,
-            "mask_backbone": False,
-            "mask_disto": True,
-        },
+        training_args=DotDict({
+            "recycling_steps": 3,
+            "sampling_steps": 20,
+            "diffusion_multiplicity": 12,
+            "diffusion_samples": 1,
+            "confidence_loss_weight": 1e-4,
+            "diffusion_loss_weight": 4.0,
+            "distogram_loss_weight": 3e-2,
+            "bfactor_loss_weight": 1e-3,
+            "res_type_loss_weight": 3e-2,
+            "adam_beta_1": 0.9,
+            "adam_beta_2": 0.95,
+            "adam_eps": 0.00000001,
+            "lr_scheduler": "af3",
+            "base_lr": 0.0,
+            "max_lr": 0.0018,
+            "lr_warmup_no_steps": 1000,
+            "lr_start_decay_after_n_steps": 50000,
+            "lr_decay_every_n_steps": 50000,
+            "lr_decay_factor": 0.95,
+            "weight_decay": 0.003,
+            "weight_decay_exclude": True,
+            "skip_batch_by_single_rep": True
+        }),
+        validation_args=DotDict({
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "symmetry_correction": False,
+        }),
         embedder_args={
             "atom_encoder_depth": 3,
             "atom_encoder_heads": 4,
@@ -228,21 +248,6 @@ def build_model() -> Boltz:
             "add_design_mask_flag": True,
             "add_binding_specification": True,
             "add_ss_specification": True,
-        },
-        freeze_template_weights=True,
-        use_templates=True,
-        template_args={
-            "template_dim": 64,
-            "template_blocks": 2,
-            "miniformer_blocks": True,
-            "activation_checkpointing": False,
-        },
-        use_token_distances=True,
-        token_distance_args={
-            "token_distance_dim": 64,
-            "token_distance_blocks": 2,
-            "use_token_distance_feats": True,
-            "distance_gaussian_dim": 32,
         },
         msa_args={
             "msa_s": 64,
@@ -282,37 +287,6 @@ def build_model() -> Boltz:
             "transformer_post_ln": False,
             "activation_checkpointing": False,
         },
-        confidence_prediction=CONFIDENCE_PREDICTION,
-        structure_prediction_training=False,
-        training_args=OmegaConf.create({
-            "recycling_steps": 3,
-            "sampling_steps": 20,
-            "diffusion_multiplicity": 12,
-            "diffusion_samples": 1,
-            "confidence_loss_weight": 1e-4,
-            "diffusion_loss_weight": 4.0,
-            "distogram_loss_weight": 3e-2,
-            "bfactor_loss_weight": 1e-3,
-            "res_type_loss_weight": 3e-2,
-            "adam_beta_1": 0.9,
-            "adam_beta_2": 0.95,
-            "adam_eps": 0.00000001,
-            "lr_scheduler": "af3",
-            "base_lr": 0.0,
-            "max_lr": 0.0018,
-            "lr_warmup_no_steps": 1000,
-            "lr_start_decay_after_n_steps": 50000,
-            "lr_decay_every_n_steps": 50000,
-            "lr_decay_factor": 0.95,
-            "weight_decay": 0.003,
-            "weight_decay_exclude": True,
-        }),
-        validation_args=OmegaConf.create({
-            "recycling_steps": 3,
-            "sampling_steps": 200,
-            "diffusion_samples": 1,
-            "symmetry_correction": False,
-        }),
         diffusion_process_args={
             "sigma_min": 0.0004,
             "sigma_max": 160.0,
@@ -329,12 +303,49 @@ def build_model() -> Boltz:
             "alignment_reverse_diff": True,
             "synchronize_sigmas": False,
         },
-        diffusion_loss_args=OmegaConf.create({
+        diffusion_loss_args={
             "add_smooth_lddt_loss": True,
             "add_bond_loss": False,
             "nucleotide_loss_weight": 5.0,
             "ligand_loss_weight": 10.0,
-        }),
+        },
+        validators=[design_validator],
+        masker_args={
+            "mask": True,
+            "mask_backbone": False,
+            "mask_disto": True,
+        },
+        atom_feature_dim=388,
+        template_args={
+            "template_dim": 64,
+            "template_blocks": 2,
+            "miniformer_blocks": True,
+            "activation_checkpointing": False,
+        },
+        use_miniformer=True,
+        confidence_prediction=CONFIDENCE_PREDICTION,
+        structure_prediction_training=True, # most Important!
+        atoms_per_window_queries=32,
+        atoms_per_window_keys=128,
+        exclude_ions_from_lddt=True,
+        ema=True,
+        ema_decay=0.999,
+        num_val_datasets=1,
+        aggregate_distogram=True,
+        bond_type_feature=True,
+        predict_bfactor=True,
+        predict_res_type=False,
+        checkpoint_diffusion_conditioning=False,
+        use_kernels=True,
+        freeze_template_weights=True,
+        use_templates=True,
+        use_token_distances=True,
+        token_distance_args={
+            "token_distance_dim": 64,
+            "token_distance_blocks": 2,
+            "use_token_distance_feats": True,
+            "distance_gaussian_dim": 32,
+        },
         refolding_validator=build_refolding_validator(),
     )
 
@@ -360,33 +371,22 @@ if __name__ == "__main__":
             name=NAME,
             save_dir=dirpath,
             project="boltzgen",
-    )]
+        )
+    ]
 
     trainer = pl.Trainer(
         default_root_dir=str(dirpath),
-        # strategy=DDPStrategy(
-        #     cluster_environment=LightningEnvironment(),
-        # ),
+        strategy=DDPStrategy(
+            cluster_environment=LightningEnvironment(),
+            find_unused_parameters=True,
+        ),
         callbacks=callbacks,
         logger=loggers,
-        enable_checkpointing=True,
-        reload_dataloaders_every_n_epochs=1,
         accelerator="gpu",
-        devices=DEVICES,
+        devices=7,
         precision="bf16-mixed",
-        gradient_clip_val=10.0,
-        accumulate_grad_batches=16,
-        max_epochs=-1,
-        num_sanity_val_steps=3,
-        log_every_n_steps=1,
     )
 
-    trainer.fit(
-        model_module,
-        datamodule=data_module,
-    )
+    trainer.fit(model_module, datamodule=data_module)
 
-    trainer.validate(
-        model_module,
-        datamodule=data_module,
-    )
+    trainer.validate(model_module, datamodule=data_module)

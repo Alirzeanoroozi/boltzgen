@@ -3,3 +3,6 @@ pycache/*
 *nbi
 *.pyc
 training_data/
+new_outputs/*
+workdir/*
+logs/*
